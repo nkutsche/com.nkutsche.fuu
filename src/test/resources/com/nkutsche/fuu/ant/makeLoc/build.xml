@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="MakeUrlTest" default="main">
+    
+    <taskdef name="fuu-make-loc" classname="com.nkutsche.fuu.ant.MakeLocationTask"/>
+
+    <property name="test.uri" value="file://path/to/uri"/>
+    
+    <fuu-make-loc url="${test.uri}" property="test.loc"/>
+    
+    <target name="main">
+        <echo message="${test.loc}"/>
+    </target>
+    
+</project>

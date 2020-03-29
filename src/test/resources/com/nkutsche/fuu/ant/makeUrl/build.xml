@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="MakeUrlTest" default="main">
+    
+    <taskdef name="fuu-make-url" classname="com.nkutsche.fuu.ant.MakeUrlTask"/>
+
+    <property name="test.folder" value="test folder"/>
+    
+    <property name="test.loc" location="${basedir}/${test.folder}"/>
+    
+    <fuu-make-url path="${test.loc}" property="test.url"/>
+    
+    <target name="main">
+        <echo message="${test.loc}"/>
+    </target>
+    
+</project>
