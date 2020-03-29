@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="22.0">
+    <meta>
+        <filters directoryPatterns="" filePatterns="\Qcom.nkutsche.fuu.xpr\E" positiveFilePatterns="" showHiddenFiles="false"/>
+        <options/>
+    </meta>
+    <projectTree name="com.nkutsche.fuu.xpr">
+        <folder path="."/>
+    </projectTree>
+</project>
