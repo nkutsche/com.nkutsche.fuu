@@ -7,6 +7,9 @@
     <groupId>com.nkutsche</groupId>
     <artifactId>fuu</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    
+    <description>Helper project to handle conversions of file-URL/URIs to system file paths and back.</description>
+    
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
