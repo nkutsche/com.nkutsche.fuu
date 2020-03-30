@@ -1,0 +1,1 @@
+mvn -DpushChanges=false -Dresume=false release:prepare release:clean

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    
     <groupId>com.nkutsche</groupId>
     <artifactId>fuu</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     
     <description>Helper project to handle conversions of file-URL/URIs to system file paths and back.</description>
     
@@ -61,7 +59,7 @@
             <url>${project.baseUri}/bin/snappshots/</url>
         </snapshotRepository>
     </distributionManagement>
-
+    
     <build>
         <plugins>
             <!--
@@ -76,7 +74,44 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <tagNameFormat>release/v@{project.version}</tagNameFormat>
+                    <preparationGoals>clean deploy -P release</preparationGoals>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-
+    
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-scm-plugin</artifactId>
+                        <configuration>
+                            <message>[maven-release-plugin] Release version ${project.version}</message>
+                            <includes>pom.xml,README.md,bin/releases/**</includes>
+                            <pushChanges>false</pushChanges>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>default</id>
+                                <goals>
+                                    <goal>checkin</goal>
+                                </goals>
+                                <phase>deploy</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    
+    
 </project>
