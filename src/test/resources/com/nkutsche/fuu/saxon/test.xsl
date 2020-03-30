@@ -9,7 +9,7 @@
     <xsl:mode on-no-match="shallow-copy"/>
     
     <xsl:template match="root/*">
-        <xsl:variable name="path-info" select="fuu:path-info(., ())" as="map(*)"/>
+        <xsl:variable name="path-info" select="fuu:path-info(.)" as="map(*)"/>
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:attribute name="file" select="$path-info('file')"/>
