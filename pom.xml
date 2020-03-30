@@ -28,6 +28,39 @@
             <version>1.9.9</version>
         </dependency>
     </dependencies>
+    
+    <developers>
+        <developer>
+            <id>nkutsche</id>
+            <name>Nico Kutscherauer</name>
+            <email>nico@nkutsche.com</email>
+        </developer>
+    </developers>
+    
+    <url>https://github.com/nkutsche/com.nkutsche.fuu</url>
+    
+    <scm>
+        <connection>scm:git:https://github.com/nkutsche/com.nkutsche.fuu.git</connection>
+        <url>https://github.com/nkutsche/com.nkutsche.fuu</url>
+        <developerConnection>scm:git:https://github.com/nkutsche/com.nkutsche.fuu.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    
+    
+    <distributionManagement>
+        <repository>
+            <id>default</id>
+            <layout>default</layout>
+            <name>internal</name>
+            <url>${project.baseUri}/bin/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>default</id>
+            <layout>default</layout>
+            <name>internal</name>
+            <url>${project.baseUri}/bin/snappshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <build>
         <plugins>
