@@ -26,7 +26,7 @@ public class JExec {
         try {
             Class<?> clazz = classloader.loadClass(className);
             Method m = clazz.getMethod("main", String[].class);
-            m.invoke(null, invokeArgs);
+            m.invoke(null, new Object[] { invokeArgs });
 
         } catch (ClassNotFoundException e) {
             System.err.println(e.getMessage());
