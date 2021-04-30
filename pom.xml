@@ -4,7 +4,7 @@
     
     <groupId>com.nkutsche</groupId>
     <artifactId>fuu</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2-SNAPSHOT</version>
     
     <description>Helper project to handle conversions of file-URL/URIs to system file paths and back.</description>
     
@@ -42,7 +42,7 @@
         <connection>scm:git:https://github.com/nkutsche/com.nkutsche.fuu.git</connection>
         <url>https://github.com/nkutsche/com.nkutsche.fuu</url>
         <developerConnection>scm:git:https://github.com/nkutsche/com.nkutsche.fuu.git</developerConnection>
-        <tag>release/v0.1.1</tag>
+        <tag>HEAD</tag>
     </scm>
     
     
