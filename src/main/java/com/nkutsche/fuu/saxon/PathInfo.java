@@ -1,7 +1,7 @@
 package com.nkutsche.fuu.saxon;
 
 import com.nkutsche.fuu.core.Converter;
-import net.sf.saxon.event.SequenceOutputter;
+import net.sf.saxon.event.SequenceWriter;
 import net.sf.saxon.expr.StaticProperty;
 import net.sf.saxon.expr.XPathContext;
 import net.sf.saxon.lib.ExtensionFunctionCall;
@@ -16,6 +16,8 @@ import net.sf.saxon.value.SequenceType;
 import net.sf.saxon.value.StringValue;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URI;
 import java.net.URL;
 import java.util.HashMap;
@@ -59,9 +61,16 @@ public class PathInfo extends ExtensionFunctionDefinition {
             @Override
             public Sequence call(XPathContext xPathContext, Sequence[] sequences) throws XPathException {
                 HashMap<String, Object> properties = Converter.getInfo(sequences[0].head().getStringValue());
-                SequenceOutputter outputter = xPathContext.getController().allocateSequenceOutputter(50);
-                outputter.write(XdmMap.makeMap(convertMapForSaxon(properties)).getUnderlyingValue());
-                return outputter.getSequence();
+                SequenceWriter outputer = xPathContext.getController().allocateSequenceOutputter(50);
+                outputer.write(XdmMap.makeMap(convertMapForSaxon(properties)).getUnderlyingValue());
+
+                try {
+                    Method m = outputer.getClass().getMethod("getSequence");
+                    return (Sequence) m.invoke(outputer);
+                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                    e.printStackTrace();
+                    throw new XPathException(e);
+                }
             }
         };
     }
