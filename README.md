@@ -12,6 +12,16 @@ This tiny library provides extension functions to convert URIs into file paths a
 * XSLT
 * Executable Java Class call
 
+## Version log
+
+### Version 0.1.1
+
+* Makes compatible with Saxon 10.x
+
+### Version 0.1.0
+
+* First release
+
 ## How to use
 
 ### Ant
