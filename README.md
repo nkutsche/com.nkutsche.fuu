@@ -4,7 +4,7 @@ Helper project to handle conversions of file-URL/URIs to system file paths and b
 
 In my XML based projects I have always the problem, that XML tools expect URI paths, but other tools (like Ant, batch/shell scripts, external java libraries) are expecting system paths. I see often in XSLT something like `replace($path, '\\', '/')` and `concat('file:/', $path)`. This works fine, as long as I don't have any special characters in my path like whitespace.
 
-I don't like such uncomplete solutions, especially as Java is able to convert system paths easily into URIs and back - respecting the use file path separator on the current system.
+I don't like such incomplete solutions, especially as Java is able to convert system paths easily into URIs and back - respecting the use file path separator on the current system.
 
 This tiny library provides extension functions to convert URIs into file paths and back for:
 
