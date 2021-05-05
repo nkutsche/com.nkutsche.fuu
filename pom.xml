@@ -40,23 +40,36 @@
         <developerConnection>scm:git:https://github.com/nkutsche/com.nkutsche.fuu.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
-    
-    
+
+
+    <!--
+    NOTE: To deploy you need access rights to the following repositories
+    Add the following parts to your ${user.home}/.m2/settings.xml
+    <servers>
+      <server>
+  	    <id>data2type-nexus</id>
+        <username>{username}</username>
+        <password>{password}</password>
+      </server>
+    </servers>
+
+    (ask Nico to get your credentials...)
+    -->
     <distributionManagement>
         <repository>
-            <id>default</id>
+            <id>data2type-nexus</id>
             <layout>default</layout>
-            <name>internal</name>
-            <url>${project.baseUri}/bin/releases/</url>
+            <name>d2t public repo</name>
+            <url>https://repo.data2type.de/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
-            <id>default</id>
+            <id>data2type-nexus</id>
             <layout>default</layout>
-            <name>internal</name>
-            <url>${project.baseUri}/bin/snappshots/</url>
+            <name>d2t public repo</name>
+            <url>https://repo.data2type.de/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
-    
+
     <build>
         <plugins>
             <!--
@@ -77,38 +90,10 @@
                 <configuration>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <tagNameFormat>release/v@{project.version}</tagNameFormat>
-                    <preparationGoals>clean deploy -P release</preparationGoals>
                 </configuration>
             </plugin>
         </plugins>
     </build>
     
-    <profiles>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-scm-plugin</artifactId>
-                        <configuration>
-                            <message>[maven-release-plugin] Release version ${project.version}</message>
-                            <includes>pom.xml,README.md,bin/releases/**</includes>
-                            <pushChanges>false</pushChanges>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>default</id>
-                                <goals>
-                                    <goal>checkin</goal>
-                                </goals>
-                                <phase>deploy</phase>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-    
-    
+
 </project>
