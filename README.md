@@ -31,16 +31,16 @@ This tiny library provides extension functions to convert URIs into file paths a
 
 #### System Path to URL conversion
 
-```
-<taskdef name="fuu-make-url" classname="com.nkutsche.fuu.ant.MakeUrlTask" classpath="/path/to/fuu-xxx.jar"/>/>
+```xml
+<taskdef name="fuu-make-url" classname="com.nkutsche.fuu.ant.MakeUrlTask" classpath="/path/to/fuu.ant-xxx.jar;/path/to/fuu.core-xxx.jar"/>
 
 <fuu-make-url path="${some.path}" property="some.url"/>
 ```
 
 #### URL to System Path conversion
 
-```
-<taskdef name="fuu-make-loc" classname="com.nkutsche.fuu.ant.MakeLocationTask" classpath="/path/to/fuu-xxx.jar"/>
+```xml
+<taskdef name="fuu-make-loc" classname="com.nkutsche.fuu.ant.MakeLocationTask" classpath="/path/to/fuu.ant-xxx.jar;/path/to/fuu.core-xxx.jar"/>
 
 <fuu-make-loc url="${some.url}" property="some.path"/>
 ```
@@ -49,7 +49,7 @@ This tiny library provides extension functions to convert URIs into file paths a
 
 To use the Saxon extension function, you have to add or create a saxon config file:
 
-```
+```xml
 <configuration edition="HE" xmlns="http://saxon.sf.net/ns/configuration">
      <resources>
           <extensionFunction>com.nkutsche.fuu.saxon.PathInfo</extensionFunction>
@@ -57,7 +57,7 @@ To use the Saxon extension function, you have to add or create a saxon config fi
 </configuration>
 ```
 
-and add the fuu-xxx.jar to the classpath of your Java-Saxon call.
+and add the fuu.core-xxx.jar and one of fuu.saxon99-xxx.jar or fuu.saxon100-xxx.jar to the classpath of your Java-Saxon call. Use the 99-variant if you run your stylesheet on a Saxon 9.9.x If you run it on a Saxon 10.x use the 100-variant.
 
 The extension function `fuu:path-info` (namespace = `http://nkutsche.com/fuu`) expects in its only argument an URI or a system path. It returns a map (map(xs:string, xs:string)) with the following keys:
 
@@ -67,7 +67,7 @@ The extension function `fuu:path-info` (namespace = `http://nkutsche.com/fuu`) e
 
 The function detects if the given string is an URI or a system path and fills the map accordingly.
 
-```
+```xml
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:math="http://www.w3.org/2005/xpath-functions/math"
@@ -101,5 +101,38 @@ java -cp "path/to/classpath/jars" com.example.Main path\to\file.xml file:/uri/to
 To convert them into URIs bevor the Main class is called, you can do the following:
 
 ```
-java -cp "path/to/classpath/jars;path/to/fuu-xxx.jar" com.nkutsche.fuu.exec.JExecTest com.example.Main url(path\to\file.xml) file(file:/uri/to/file.xml) 
+java -cp "path/to/classpath/jars;path/to/fuu.core-xxx.jar" com.nkutsche.fuu.exec.JExecTest com.example.Main url(path\to\file.xml) file(file:/uri/to/file.xml) 
+```
+
+### Maven
+
+To add one of the modules to your Maven project you have to add the following to your pom.xml:
+
+```xml
+<repositories>
+    <repository>
+        <id>d2tnexus</id>
+        <url>https://repo.data2type.de/repository/maven-public/</url>
+    </repository>
+</repositories>
+```
+
+Then you can add one of modules as dependencies to your project:
+
+| Module artifactId | Description |
+|---|---|
+| `fuu.core` | For the executable Java class  |
+| `fuu.ant` | For the custom Ant step |
+| `fuu.saxon99` | For the Saxon extension functions running with Saxon 9.9.x  |
+| `fuu.saxon100` | For the Saxon extension functions running with Saxon 10.x  |
+ 
+Add the dependency like this to your pom.xml:
+
+```xml
+
+<dependency>
+  <groupId>com.nkutsche</groupId>
+  <artifactId>{module-artifactId}</artifactId>
+  <version>{fuu-version}</version>
+</dependency>
 ```
