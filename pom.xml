@@ -4,10 +4,17 @@
     
     <groupId>com.nkutsche</groupId>
     <artifactId>fuu</artifactId>
-    <version>0.1.2-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
     
     <description>Helper project to handle conversions of file-URL/URIs to system file paths and back.</description>
-    
+    <modules>
+        <module>core</module>
+        <module>saxon99</module>
+        <module>saxon100</module>
+        <module>ant</module>
+    </modules>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
