@@ -14,6 +14,12 @@ This tiny library provides extension functions to convert URIs into file paths a
 
 ## Version log
 
+### Version 0.2.0
+
+* Reworks on Saxon compatibility by structuring to a multi-module-project
+* Update components
+    * Ant
+
 ### Version 0.1.1
 
 * Makes XSLT extension function compatible with Saxon 10.x
