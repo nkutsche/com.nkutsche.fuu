@@ -5,7 +5,7 @@
     <groupId>com.nkutsche</groupId>
     <artifactId>fuu</artifactId>
     <packaging>pom</packaging>
-    <version>0.2.0</version>
+    <version>0.2.1-SNAPSHOT</version>
     
     <description>Helper project to handle conversions of file-URL/URIs to system file paths and back.</description>
     <modules>
@@ -38,7 +38,7 @@
         <connection>scm:git:https://github.com/nkutsche/com.nkutsche.fuu.git</connection>
         <url>https://github.com/nkutsche/com.nkutsche.fuu</url>
         <developerConnection>scm:git:https://github.com/nkutsche/com.nkutsche.fuu.git</developerConnection>
-        <tag>release/v0.2.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
 
